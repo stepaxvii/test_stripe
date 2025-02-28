@@ -26,8 +26,6 @@ ALLOWED_HOSTS = os.getenv(
 
 ALLOWED_HOSTS = [host.strip() for host in ALLOWED_HOSTS]
 
-FORCE_SCRIPT_NAME = '/django'
-
 
 INSTALLED_APPS = [
     'items.apps.ItemsConfig',
