@@ -34,6 +34,10 @@ CSRF_TRUSTED_ORIGINS = os.getenv(
 
 CSRF_TRUSTED_ORIGINS = [origin.strip() for origin in CSRF_TRUSTED_ORIGINS]
 
+CORS_ALLOWED_ORIGINS = [
+    "https://stepaproject.ru",
+    'https://www.stepaproject.ru'
+]
 
 INSTALLED_APPS = [
     'items.apps.ItemsConfig',
@@ -43,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'test_stripe.urls'
