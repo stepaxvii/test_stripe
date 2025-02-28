@@ -23,7 +23,7 @@
         }
     
         document.getElementById('buy-button').addEventListener('click', async () => {
-            const response = await fetch(`/buy/{{ item.id }}`);
+            const response = await fetch(`https://stepaproject.ru/django/buy/{{ item.id }}/`);
             const data = await response.json();
             const sessionId = data.session_id;
             const result = await stripe.redirectToCheckout({ sessionId });
