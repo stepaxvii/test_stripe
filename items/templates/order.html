@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Page</title>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <h1>Order {{ order.id }}</h1>
+    <ul>
+        {% for item in order.items.all %}
+            <li>{{ item.name }} - {{ item.price }} {{ item.currency }}</li>
+        {% endfor %}
+    </ul>
+    <p>Total Cost: {{ order.total_cost }} {{ order.currency }}</p>
+    <button id="buy-button">Оплатить заказ</button>
+
+    <script>
+        const orderCurrency = '{{ order.currency }}';
+        const publishableKeyUSD = '{{ STRIPE_PUBLISHABLE_KEY_USD }}';
+        const publishableKeyEUR = '{{ STRIPE_PUBLISHABLE_KEY_EUR }}';
+    
+        let stripe;
+        if (orderCurrency === 'USD') {
+            stripe = Stripe(publishableKeyUSD);
+        } else if (orderCurrency === 'EUR') {
+            stripe = Stripe(publishableKeyEUR);
+        }
+    
+        document.getElementById('buy-button').addEventListener('click', async () => {
+            const response = await fetch(`/buy_order/{{ order.id }}`);
+            const data = await response.json();
+            const sessionId = data.session_id;
+            const result = await stripe.redirectToCheckout({ sessionId });
+            if (result.error) {
+                alert(result.error.message);
+            }
+        });
+    </script>
+</body>
+</html>
