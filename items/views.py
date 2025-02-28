@@ -4,12 +4,16 @@ from django.shortcuts import render
 import stripe
 
 from items.models import Item, Order
-from test_stripe.settings import (
-    STRIPE_SECRET_KEY_EUR,
-    STRIPE_SECRET_KEY_USD,
-    STRIPE_PUBLISHABLE_KEY_EUR,
-    STRIPE_PUBLISHABLE_KEY_USD
-)
+# from test_stripe.settings import (
+#     STRIPE_SECRET_KEY_EUR,
+#     STRIPE_SECRET_KEY_USD,
+#     STRIPE_PUBLISHABLE_KEY_EUR,
+#     STRIPE_PUBLISHABLE_KEY_USD
+# )
+STRIPE_PUBLISHABLE_KEY_USD = 'pk_test_51QwVxxCL2w412b3gZZpT2cUQhl6pAZUvoLYuLQ9IWg4K5z5YjNhytEGMutvOxWpaChqz4kHegNB43YZI85PnUQYN00LMQ6RQbp'
+STRIPE_SECRET_KEY_USD = 'sk_test_51QwVxxCL2w412b3gjw0vIkxHNu1UJw1KQH4BTd5OpXPy3An6vcFOYq4RX3HpedDT0VskkRbXJ3XC1pyoVNRIinPI006SHNPBhi'
+STRIPE_PUBLISHABLE_KEY_EUR = 'pk_test_51QxYwPP0ao1BmfVUBgzGVQqdqjYasVofnDL7JcRLwamVTAzSsaq1lF4QqJWIdZXyZsD05qQQldvenbPyU47q3AXn00h9JGDDco'
+STRIPE_SECRET_KEY_EUR = 'sk_test_51QxYwPP0ao1BmfVUccGb9PgvZX1SGaZQBb2Wp9ZvsudagSoehKAHlFTAfqAszJj42N4nG4LhXZkWNjxjf295OuoN008I3n0GUK'
 
 
 @require_GET
@@ -40,8 +44,8 @@ def buy_item(request, id):
                 },
             ],
             mode='payment',
-            success_url='http://localhost:8000/success',
-            cancel_url='http://localhost:8000/cancel',
+            success_url='https://stepaproject.ru/django/success',
+            cancel_url='https://stepaproject.ru/django/cancel',
         )
         return JsonResponse({'session_id': session.id})
     except Item.DoesNotExist:
@@ -78,8 +82,8 @@ def buy_order(request, id):
             payment_method_types=['card'],
             line_items=line_items,
             mode='payment',
-            success_url='http://localhost:8000/success',
-            cancel_url='http://localhost:8000/cancel',
+            success_url='https://stepaproject.ru/django/success',
+            cancel_url='https://stepaproject.ru/django/cancel',
         )
         return JsonResponse({'session_id': session.id})
     except Order.DoesNotExist:
