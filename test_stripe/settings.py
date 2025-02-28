@@ -1,4 +1,4 @@
-from os import getenv
+import os
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -8,18 +8,18 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Секретный ключ Django
-SECRET_KEY = getenv('SECRET_KEY_DJANGO')
+SECRET_KEY = os.getenv('SECRET_KEY_DJANGO')
 
 # Ключи Stripe
-STRIPE_PUBLISHABLE_KEY_USD = getenv('STRIPE_PUBLISHABLE_KEY_USD')
-STRIPE_SECRET_KEY_USD = getenv('STRIPE_SECRET_KEY_USD')
+STRIPE_PUBLISHABLE_KEY_USD = os.getenv('STRIPE_PUBLISHABLE_KEY_USD')
+STRIPE_SECRET_KEY_USD = os.getenv('STRIPE_SECRET_KEY_USD')
 
-STRIPE_PUBLISHABLE_KEY_EUR = getenv('STRIPE_PUBLISHABLE_KEY_EUR')
-STRIPE_SECRET_KEY_EUR = getenv('STRIPE_SECRET_KEY_EUR')
+STRIPE_PUBLISHABLE_KEY_EUR = os.getenv('STRIPE_PUBLISHABLE_KEY_EUR')
+STRIPE_SECRET_KEY_EUR = os.getenv('STRIPE_SECRET_KEY_EUR')
 
-DEBUG = True
+DEBUG = os.getenv('DEBUG') == 'True'
 
-ALLOWED_HOSTS = getenv(
+ALLOWED_HOSTS = os.getenv(
     'ALLOWED_HOSTS',
     default='127.0.0.1,localhost'
 ).split(',')
@@ -71,7 +71,7 @@ WSGI_APPLICATION = 'test_stripe.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
