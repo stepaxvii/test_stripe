@@ -26,6 +26,8 @@ ALLOWED_HOSTS = os.getenv(
 
 ALLOWED_HOSTS = [host.strip() for host in ALLOWED_HOSTS]
 
+FORCE_SCRIPT_NAME = '/django'
+
 
 INSTALLED_APPS = [
     'items.apps.ItemsConfig',
@@ -103,7 +105,8 @@ USE_L10N = True
 USE_TZ = True
 
 
-STATIC_URL = '/static/'
+STATIC_URL = '/django/static/'
+STATIC_ROOT = '/home/django/staticfiles/'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
