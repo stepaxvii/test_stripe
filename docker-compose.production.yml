@@ -17,7 +17,7 @@ services:
       - DATABASE_URL=${DATABASE_URL}
     volumes:
       - static_volume:/app/staticfiles
-      - ./db.sqlite3:/app/db.sqlite3
+      - db_volume:/app/db
 
 volumes:
   static_volume:
