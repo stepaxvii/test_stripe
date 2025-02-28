@@ -27,6 +27,14 @@ ALLOWED_HOSTS = os.getenv(
 ALLOWED_HOSTS = [host.strip() for host in ALLOWED_HOSTS]
 
 
+CSRF_TRUSTED_ORIGINS = os.getenv(
+    'CSRF_TRUSTED_ORIGINS',
+    default='https://127.0.0.1,https://localhost'
+).split(',')
+
+CSRF_TRUSTED_ORIGINS = [origin.strip() for origin in CSRF_TRUSTED_ORIGINS]
+
+
 INSTALLED_APPS = [
     'items.apps.ItemsConfig',
     'django.contrib.admin',
