@@ -8,7 +8,7 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Секретный ключ Django
-SECRET_KEY = os.getenv('SECRET_KEY_DJANGO')
+SECRET_KEY = 'django-insecure-i9**_wuoysg@!t1as#xo1xoa5!@6_^c2@p0#5dq6w*1)5%(x4#'
 
 # Ключи Stripe
 STRIPE_PUBLISHABLE_KEY_USD = os.getenv('STRIPE_PUBLISHABLE_KEY_USD')
