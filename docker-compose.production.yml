@@ -15,7 +15,7 @@ services:
       - STRIPE_SECRET_KEY_EUR=${STRIPE_SECRET_KEY_EUR}
       - DATABASE_URL=${DATABASE_URL}
     volumes:
-      - static_volume:/app/staticfiles/
+      - /var/www/staticfiles:/app/staticfiles
       - db_volume:/app/db
 
 volumes:
